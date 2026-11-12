@@ -29,7 +29,7 @@
 | 항목 | 내용 |
 |------|------|
 | 한다 | 인테이크 → 추출 → 설계 → 코드 생성 → 컨벤션 리뷰 → 검증. 공통 UI는 스토리·README changelog 초안까지 |
-| 안 한다 | 커밋(`/git-commit`), 디자인 배포, 팀 합의, PR·리뷰 |
+| 안 한다 | 커밋(별도 요청 시에만), 디자인 배포, 팀 합의, PR·리뷰 |
 | 대상 레포 | fe-mobile — `src/pui/` · `src/features/` · `src/apps/` · `src/styles/theme.ts` |
 | 컨벤션 기준 | **PUI 코드 컨벤션**(pui 기본) · **프로젝트 코드 컨벤션**(프로젝트 저장소 `CLAUDE.md`/`AGENTS.md`)(전사) · `docs/build/guide/*`(생성 부가) |
 

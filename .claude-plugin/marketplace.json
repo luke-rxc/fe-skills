@@ -31,7 +31,7 @@
     {
       "name": "fe-mobile",
       "description": "fe-mobile 전용 — figma-to-component 스킬, PUI 컨벤션 주입 hook, Figma·Playwright MCP",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "source": "./",
       "strict": false,
       "dependencies": [

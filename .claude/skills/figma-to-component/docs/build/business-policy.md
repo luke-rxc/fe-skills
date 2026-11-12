@@ -87,7 +87,7 @@ src/features/{featureName}/components/
 ## 6. README / Changelog (선택)
 
 - 비즈니스 컴포넌트는 pui처럼 컴포넌트별 README/changelog를 강제하지 않는다.
-- 변경 이력은 커밋 메시지(`type(scope): ... (#FE-XXXX)`)로 충분. 커밋은 별도 요청 시 `git-commit` 스킬 사용.
+- 변경 이력은 커밋 메시지(`type(scope): ... (#FE-XXXX)`)로 충분. 커밋은 별도 요청 시에만.
 
 ## 7. 검증
 
