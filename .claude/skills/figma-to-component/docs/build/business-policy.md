@@ -13,7 +13,7 @@
 
 **세 경로는 배타적이고, 순서대로 판정한다.**
 
-1. **PUI 생성 원칙**(`.claude/rules/pui-code-convention.md` 「생성 원칙」, 운영은 [pui-policy.md](pui-policy.md) 0번)을 만족 → `src/pui/{category}/{name}/` (여기서 끝)
+1. **PUI 생성 원칙**(**PUI 코드 컨벤션** 「생성 원칙」, 운영은 [pui-policy.md](pui-policy.md) 0번)을 만족 → `src/pui/{category}/{name}/` (여기서 끝)
 2. **2개+ 도메인에서 재사용** → `src/features/{featureName}/components/`
 3. 그 외(단일 도메인 전용) → `src/apps/{domain}/components/`
 
@@ -43,7 +43,7 @@
 
 - 새 마크업을 짜기 전에 `src/pui/*`에서 쓸 수 있는 컴포넌트를 최대한 조합한다.
 - pui로 표현 안 되는 비즈니스 로직/레이아웃만 비즈니스 컴포넌트로 구현한다.
-- pui에 넘길 **로깅 등 UI 외 정보**는 pui에 prop을 늘리지 말고 `'data-*'`로 실어 보낸다(예: 매퍼에서 `{ name, 'data-goods-status': status }`) → `.claude/rules/pui-code-convention.md` 「디자인과 무관한 데이터는 `data-*` 어트리뷰트로 받는다」.
+- pui에 넘길 **로깅 등 UI 외 정보**는 pui에 prop을 늘리지 말고 `'data-*'`로 실어 보낸다(예: 매퍼에서 `{ name, 'data-goods-status': status }`) → **PUI 코드 컨벤션** 「디자인과 무관한 데이터는 `data-*` 어트리뷰트로 받는다」.
 - **여러 도메인에서 재사용될 조짐이 보이면** → 0번 판정을 다시 태운다. 비즈니스 로직이 없으면 **pui 승격 제안**(공통 UI 경로로 전환, 팀 합의 필요), 있으면 **features 이동 제안**.
 
 ## 3. 디렉토리 / 파일 구성

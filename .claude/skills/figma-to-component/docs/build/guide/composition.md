@@ -118,7 +118,7 @@ Figma 노드의 아이콘(화살표·플러스·체크 등 단색 UI 글리프)�
 - 자식에 없는 상태(예: `GoodsMedium`엔 disabled 없음)를 부모 styled 하위 셀렉터로 구현할 때, **마스터에 보이는 요소만 처리하면 안 된다.** 마스터 디자인은 특정 케이스(예: brand+title)만 보여주지만, 자식은 여러 type/variant를 노출하므로 **자식이 렌더하는 색 있는 요소 전체를 grep해 빠짐없이 커버**한다.
 - 실패 사례: `SelectVoucher` disabled에서 `GoodsMedium`의 `.brand`·`.name`만 회색 처리 → `type='price'/'optionName'`의 `.price`·`.discount`(sale 색)·`.option`·`.divider`가 원색으로 남음. 자식 styled를 grep해 색 요소 전부를 `textDisabled` 로 오버라이드해 해결.
 - 점검법: 자식 컴포넌트 파일에서 `color:`·`background:`가 걸린 클래스를 grep → 부모 오버라이드에 그 클래스를 **전부** 포함한다.
-- ⚠️ **상태 색을 다루는 CSS 3원칙(상속 안 됨 · base 조건부 · specificity 깊이 맞추기)은 `src/pui` 전역 컨벤션으로 승격됐다** → `.claude/rules/pui-code-convention.md` "상태에 따라 색을 바꿀 때"(`src/pui` 작업 시 자동 로드). 여기서 재서술하지 않는다.
+- ⚠️ **상태 색을 다루는 CSS 3원칙(상속 안 됨 · base 조건부 · specificity 깊이 맞추기)은 `src/pui` 전역 컨벤션으로 승격됐다** → **PUI 코드 컨벤션** "상태에 따라 색을 바꿀 때"(`src/pui` 작업 시 자동 로드). 여기서 재서술하지 않는다.
   - 실측 근거: 자식 `GoodsMedium`이 `.name`을 `.info .text .name`(클래스 4개)으로 잡는데 부모가 `${GoodsMedium} .name`(3개)으로 덮어 **disabled 회색이 안 먹었다**. / `SelectVoucher` 혜택 List는 하단 disabled 블록에 오버라이드를 뒀다가 base와 셀렉터가 겹쳐 `no-duplicate-selectors` 경고 → base `color`를 삼항으로 바꿔 해결.
   - **f2c 고유 부분은 아래 ⓑ 본문**이다 — 자식이 렌더하는 색 요소를 **전부 grep해 빠짐없이 커버**하는 것. 3원칙을 지켜도 대상을 빠뜨리면 그 variant만 원색으로 남는다.
 - ⚠️ **오버라이드 상태는 자식 variant별 스토리로 검증**(→ [structure.md](structure.md) 4번 State별 스토리): 추가한 상태를 자식의 각 type/variant마다 스토리로 만들어 육안 확인한다(예: `Disabled가격형`·`Disabled옵션형`·`Disabled수량형`).

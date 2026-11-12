@@ -101,7 +101,7 @@ Phase 1은 마스터·Doc을 추출하며 **"이 컴포넌트가 어떻게 동�
    사용자가 띄운 프로세스는 **종료하지 않는다**(사용자 소유).
 
 1. **사용 가능한 도구 탐색** — 아래 우선순위로 확인한다:
-   - Playwright MCP (`mcp__playwright__*` 도구 존재 여부)
+   - Playwright MCP (`mcp__playwright__*` 또는 플러그인 제공 `mcp__plugin_fe-mobile_playwright__*` 도구 존재 여부)
    - Chrome MCP (`mcp__claude-in-chrome__*`)
    - `open` + `curl` 폴백 (DOM 측정 불가 → 불합격)
 

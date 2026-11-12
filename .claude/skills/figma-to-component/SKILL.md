@@ -1,7 +1,7 @@
 ---
 name: figma-to-component
 description: Figma 디자인을 분석해 React 컴포넌트를 신규 생성합니다(fe-mobile). 공통 UI(`src/pui`)와 비즈니스(`src/features/{name}` · `src/apps/{domain}`)를 모두 지원합니다 — pui 전용이 아닙니다. TRIGGER when ⓐ 사용자가 컴포넌트 신규 생성을 요청할 때 — Figma 명시 여부·pui/도메인 여부와 무관하게 발동한다. 예: 'pui 컴포넌트 만들어줘', '도메인/비즈니스 컴포넌트 만들어줘', '피그마로 컴포넌트 만들어줘', Figma URL을 붙여넣으며 '이거 만들어줘'. 또는 ⓑ 다른 스킬·워크플로우가 진행 중 UI 컴포넌트를 신규 생성하는 단계에 도달했을 때 — 호출측 지침에 f2c 언급이 없어도 이 스킬에 위임한다(인자 규약 docs/common/input-contract.md). 단 기존 컴포넌트 리뷰/수정/레거시 분석이 아니라 신규 생성일 때로 한정한다.
-allowed-tools: Read Grep Glob Write Edit Bash AskUserQuestion Task mcp__figma__* mcp__notion__*
+allowed-tools: Read Grep Glob Write Edit Bash AskUserQuestion Task mcp__figma__* mcp__notion__* mcp__plugin_fe-mobile_figma__* mcp__plugin_common_notion__*
 ---
 
 # Figma → 컴포넌트 생성
@@ -48,6 +48,15 @@ docs/
 
 ---
 
+## 참조 규칙 위치
+
+| 규칙 | 위치 | 로드 방식 |
+|---|---|---|
+| **PUI 코드 컨벤션** | [../../../plugins/fe-mobile/rules/pui-code-convention.md](../../../plugins/fe-mobile/rules/pui-code-convention.md) (fe-skills `fe-mobile` 플러그인 소유) | `src/pui/**` 파일을 Read/Edit/Write 하면 플러그인 hook이 세션당 1회 자동 주입. **경로 판별처럼 파일을 건드리기 전에 필요하면 위 경로를 직접 Read한다.** |
+| **프로젝트 코드 컨벤션** | 프로젝트 저장소의 `CLAUDE.md`/`AGENTS.md` | 세션 시작 시 자동 로드 |
+
+---
+
 ## ⚠️ 전역 규칙
 
 > 다른 문서·절에서 이 규칙을 가리킬 땐 **번호가 아니라 이름으로** 부른다. 번호로 참조하면 목록이 바뀔 때 가리키는 대상이 조용히 어긋난다(실측: "전역 규칙 4"가 실제로는 규칙 5를 가리키고 있었다).
@@ -72,7 +81,7 @@ docs/
 
 ### Phase 0 — 인테이크 → 🚦 Gate 1
 
-1. **Figma MCP 인증 검증 (본 작업 전에 반드시)** — `whoami` 호출. **사용 불가/인증 실패** → Figma 연동 안내(`.claude/rules/mcp-setup-guide.md`, 프로젝트 규칙으로 로드됨)를 그대로 제공하고 **중단**(자체 대안 제시 금지).
+1. **Figma MCP 인증 검증 (본 작업 전에 반드시)** — `whoami` 호출. **사용 불가/인증 실패** → Figma 연동 안내([docs/common/figma-mcp-setup.md](docs/common/figma-mcp-setup.md))를 Read해 그 내용을 그대로 제공하고 **중단**(자체 대안 제시 금지).
 2. **URL 확보 → 파싱 → probe → 판정 → 확정 카드** → [docs/plan/intake.md](docs/plan/intake.md)
    - URL이 없을 때만 Gate 0으로 묻는다. **파일 타입은 묻지 않는다** — URL fileKey 역조회로 나온다.
    - 호출측이 인자로 준 값은 재질문하지 않는다 → [docs/common/input-contract.md](docs/common/input-contract.md)
@@ -87,7 +96,7 @@ docs/
    - 티켓·분기점(master/develop)이 불확실하면 **확정받는다**. 티켓은 README changelog·커밋 컨벤션에도 쓰이므로 여기서 정해두면 뒤가 편하다.
 5. **설계 노트 시작** — Gate 1 확정값을 설계 노트에 올린다(산출물 확장이 켜져 있으면 그 계약대로 기록).
 
-**경로 판별(공통 UI vs 비즈니스)** — 단일 기준은 `.claude/rules/pui-code-convention.md` **「생성 원칙」**이다(운영은 [docs/build/pui-policy.md](docs/build/pui-policy.md) 0번):
+**경로 판별(공통 UI vs 비즈니스)** — 단일 기준은 **PUI 코드 컨벤션** **「생성 원칙」**이다(운영은 [docs/build/pui-policy.md](docs/build/pui-policy.md) 0번):
 - **전제** — 렌더 트리 안 · 내부 상호작용만 · 비즈니스 로직/데이터 연동 없음. 하나라도 어기면 비즈니스.
 - **원칙 1 PDS 정의**(F.M.C., 또는 여러 마스터에 완전히 같은 내부 요소) · **2 Atomic** · **3 Behavior** · **4 Structure** 중 하나를 만족하면 **공통 UI**. 원칙 2~4는 **팀 합의 필수** → 해당 시 경고.
 - "2개+ 도메인에서 쓰인다"는 **검토 트리거일 뿐 생성 조건이 아니다.**
@@ -128,7 +137,7 @@ docs/
    - **공통 UI** → [docs/build/pui-policy.md](docs/build/pui-policy.md) + [docs/build/pui-generation-guide.md](docs/build/pui-generation-guide.md)(→ `guide/` 라우팅)
      재사용 우선 → Foundation 토큰(`theme.ts`) → pui 표준 파일 구성 → 스토리 **필수**(`defineMeta`에 Figma nodeId 연결) → README changelog → a11y.
    - **비즈니스** → [docs/build/business-policy.md](docs/build/business-policy.md) — pui 조합 우선 → Gate 1에서 확정한 `src/features/{featureName}/components/` 또는 `src/apps/{domain}/components/`에 경량 생성(**barrel `index.ts` 포함**) → 스토리/README는 선택.
-   - PUI 규칙(생성 원칙·배치·**시맨틱**·코드 규칙)은 `.claude/rules/pui-code-convention.md`가 단일 기준(`src/pui` 작업 시 자동 로드). 신규 컴포넌트는 **시맨틱 원칙 1~5를 생성 기준으로** 적용한다. 일반 컨벤션은 `.kiro/steering/code-conventions.md`.
+   - PUI 규칙(생성 원칙·배치·**시맨틱**·코드 규칙)은 **PUI 코드 컨벤션**이 단일 기준(`src/pui` 작업 시 자동 주입). 신규 컴포넌트는 **시맨틱 원칙 1~5를 생성 기준으로** 적용한다. 일반 컨벤션은 **프로젝트 코드 컨벤션**(프로젝트 저장소 `CLAUDE.md`/`AGENTS.md`).
    - 생성 직전 **형제 컴포넌트를 Read**해 패턴을 맞춘다 — 가이드는 요약일 뿐, 최종 기준은 실제 코드다.
 2. **컨벤션 리뷰** → [docs/build/review.md](docs/build/review.md) — 별도 컨텍스트의 리뷰어(범용 에이전트 → `/code-review` → 셀프 체크 폴백)로 검사하고 `[필수]` 지적이 없을 때까지 수정 루프. **게이트가 아니다**(자동 루프, 결과만 보고).
 

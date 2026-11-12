@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "figma": { "type": "http", "url": "https://mcp.figma.com/mcp" },
+    "playwright": {
+      "command": "bash",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/plugins/fe-mobile/mcp/playwright-mcp.sh"]
+    }
+  }
+}

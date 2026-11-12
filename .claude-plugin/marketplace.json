@@ -1,20 +1,59 @@
 {
   "name": "fe-skills",
-  "owner": { "name": "luke-rxc" },
+  "owner": {
+    "name": "luke-rxc"
+  },
   "metadata": {
     "description": "FE 팀 에이전트 스킬 모음",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
-      "name": "fe-mobile",
-      "description": "fe-mobile 프로젝트 전용 스킬 (Figma → 컴포넌트 생성 등)",
+      "name": "common",
+      "description": "FE 공용 — Notion·Atlassian MCP, 작업 완료 알림 hook",
       "version": "0.1.0",
       "source": "./",
       "strict": false,
+      "mcpServers": "./plugins/common/.mcp.json",
+      "hooks": {
+        "Stop": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "bash \"${CLAUDE_PLUGIN_ROOT}/plugins/common/hooks/stop.sh\""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "fe-mobile",
+      "description": "fe-mobile 전용 — figma-to-component 스킬, PUI 컨벤션 주입 hook, Figma·Playwright MCP",
+      "version": "0.2.0",
+      "source": "./",
+      "strict": false,
+      "dependencies": [
+        "common"
+      ],
       "skills": [
         "./.claude/skills/figma-to-component"
-      ]
+      ],
+      "mcpServers": "./plugins/fe-mobile/.mcp.json",
+      "hooks": {
+        "PreToolUse": [
+          {
+            "matcher": "Read|Edit|Write|MultiEdit",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "node \"${CLAUDE_PLUGIN_ROOT}/plugins/fe-mobile/hooks/pui-rule.mjs\""
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }

@@ -3,13 +3,13 @@
 대상: `src/pui/{category}/{name}/` 에 추가되는 **디자인시스템 공통 컴포넌트**. 단순 코드 생성이 아니라 **PUI 기여 프로세스**다. 아래 정책을 모두 지킨다.
 
 > **출처(Notion)** — 아래 문서를 기반으로 본 정책을 정리했다. **런타임 조회는 하지 않으며, 이 md 문서가 단일 기준**이다. (원본이 바뀌면 문서를 수동 갱신)
-> - **생성 원칙·배치·시맨틱**은 `.claude/rules/pui-code-convention.md`가 단일 기준(원본 Notion 링크·동기화일도 거기)
+> - **생성 원칙·배치·시맨틱**은 **PUI 코드 컨벤션**이 단일 기준(원본 Notion 링크·동기화일도 거기)
 > - PUI Work Process: https://app.notion.com/p/rxc/PUI-Work-Process-38414ad98d56804ca906e9f2203db3ca
 > - PUI Storybook: https://www.notion.so/rxc/PUI-Storybook-8e005c60a5834b60b8cbdcf9f2d10cd2
 
 ## 0. 이게 공통 UI(PUI)가 맞는가 — 생성 판단 기준 (필수)
 
-판정 기준은 `.claude/rules/pui-code-convention.md` **「생성 원칙」**이 소유한다(전제 + 원칙 1~4). 여기서는 **스킬이 그 기준을 어떻게 운영하나**만 정한다. 하나도 해당 안 되면 비즈니스 컴포넌트(→ business-policy.md)다.
+판정 기준은 **PUI 코드 컨벤션** **「생성 원칙」**이 소유한다(전제 + 원칙 1~4). 여기서는 **스킬이 그 기준을 어떻게 운영하나**만 정한다. 하나도 해당 안 되면 비즈니스 컴포넌트(→ business-policy.md)다.
 
 1. **전제부터 본다** — 렌더 트리 밖에서 동작하거나, 비즈니스 로직·데이터 연동이 필요하면 원칙을 볼 것도 없이 비즈니스다.
 2. **원칙 1(PDS 정의)** — `fileKey=pds` + F.M.C.면 객관적으로 충족(`get_metadata`로 `<symbol>`/`<instance>` 확인 → [plan/intake.md](../plan/intake.md) §4). 마스터 **내부 요소**를 분리하려면 여러 마스터에서 디자인과 UI/UX 처리가 **완전히 같은지** 근거(`file:line`·노드 id)를 카드에 단다.

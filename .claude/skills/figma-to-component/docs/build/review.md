@@ -34,8 +34,8 @@
 리뷰를 요청하기 전에 아래가 됐는지 확인한다(옛 가이드 5번 "생성 직전 체크"):
 
 1. **형제 컴포넌트 1개 Read** — 가이드 패턴은 요약일 뿐. 실제 네이밍/스타일/export는 같은 폴더(또는 유사 복잡도) 컴포넌트를 열어 그대로 따랐는가.
-2. **`.claude/rules/pui-code-convention.md` 준수** — `src/pui` 파일을 다루면 세션에 자동 로드되는 기본 규칙.
-3. **`.kiro/steering/code-conventions.md` 준수** — alias 필수, props 타입 파일 내 정의, JSDoc 한국어, `any` 최소화 등.
+2. ****PUI 코드 컨벤션** 준수** — `src/pui` 파일을 다루면 세션에 자동 로드되는 기본 규칙.
+3. ****프로젝트 코드 컨벤션**(프로젝트 저장소 `CLAUDE.md`/`AGENTS.md`) 준수** — alias 필수, props 타입 파일 내 정의, JSDoc 한국어, `any` 최소화 등.
 
 ---
 
@@ -82,7 +82,7 @@
 - [ ] **CSS 선택자에 태그명 금지** (클래스/컴포넌트 셀렉터)
 - [ ] **배열 key에 index 사용 금지**
 - [ ] **상대 경로(`../../../`) 금지** — alias(`@pui/`·`@utils/`·`@constants/` …)
-- [ ] 근거: `.claude/rules/pui-code-convention.md`, `guide/structure.md` 2
+- [ ] 근거: **PUI 코드 컨벤션**, `guide/structure.md` 2
 
 ### E. 스토리 (`defineMeta`)
 
@@ -110,7 +110,7 @@
 - [ ] **`README.md` Changelog** 작성 (공통 UI 필수)
 - [ ] **신규 공통 UI가 `src/pui/{category}/{name}/`에 있는가** — 카테고리 폴더가 스토리 `category`와 1:1인가, 폴더명이 camelCase인가. Figma 슬래시 이름의 서브가 마스터 폴더 안 `MasterSub.tsx`로 있고 `index.ts`에서 export되는가. 서브마다 **별도 스토리 파일**(`MasterSub.stories.tsx`, `design`에 서브 세트 id)이 있는가
 - [ ] **컴포넌트 전용 유틸이 컴포넌트 폴더의 `utils/`에 있는가** — root `@utils`에 새로 만들었으면 위반(기존 공용 인프라 유틸 재사용은 허용)
-- [ ] 근거: `guide/structure.md` 1, `.claude/rules/pui-code-convention.md` 「배치」
+- [ ] 근거: `guide/structure.md` 1, **PUI 코드 컨벤션** 「배치」
 
 ### F-2. 시맨틱 (신규 공통 UI)
 
@@ -119,7 +119,7 @@
 - [ ] **이미지 `alt`·아이콘 `aria-label`/`aria-hidden`을 prop으로 받을 수 있는가** — 장식이면 `alt=""`/`aria-hidden`, 이중 낭독 없음
 - [ ] **텍스트 없는 버튼·링크에 이름(`aria-label`)을 받을 수 있는가** — 이름에 역할·동작을 넣지 않음, 토글은 `aria-pressed`
 - [ ] **상태를 색으로만 표현하지 않는가** — role + `aria-checked`/`aria-pressed`/`aria-selected`, 동적 알림은 `role="status"`/`"alert"` + `aria-live`
-- [ ] 근거: `.claude/rules/pui-code-convention.md` 「시맨틱」
+- [ ] 근거: **PUI 코드 컨벤션** 「시맨틱」
 
 ### G. 정책 반영 (해당 시)
 

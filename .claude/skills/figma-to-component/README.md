@@ -31,7 +31,7 @@
 | 한다 | 인테이크 → 추출 → 설계 → 코드 생성 → 컨벤션 리뷰 → 검증. 공통 UI는 스토리·README changelog 초안까지 |
 | 안 한다 | 커밋(`/git-commit`), 디자인 배포, 팀 합의, PR·리뷰 |
 | 대상 레포 | fe-mobile — `src/pui/` · `src/features/` · `src/apps/` · `src/styles/theme.ts` |
-| 컨벤션 기준 | `.claude/rules/pui-code-convention.md`(pui 기본) · `.kiro/steering/code-conventions.md`(전사) · `docs/build/guide/*`(생성 부가) |
+| 컨벤션 기준 | **PUI 코드 컨벤션**(pui 기본) · **프로젝트 코드 컨벤션**(프로젝트 저장소 `CLAUDE.md`/`AGENTS.md`)(전사) · `docs/build/guide/*`(생성 부가) |
 
 **언제 태우나 vs 다른 스킬로**:
 - ✅ **f2c로**: 컴포넌트 **신규 생성**. Figma 명시 여부·pui/도메인 여부와 무관하게 발동한다.
@@ -160,7 +160,7 @@ flowchart TD
 | 호출측 인자 계약(`--path`/`--suggest-*`) | [`common/input-contract.md`](docs/common/input-contract.md) | 호출 스킬 문서(링크만) |
 | URL 파싱 · 판정표(노드 정체 판정) · 마스터 후보 0/1/2+ · Doc 감지 | [`plan/intake.md`](docs/plan/intake.md) | README §2 흐름도 |
 | 추출 3종 · MCP 누락 속성 · 재사용 매핑 실측 대조 | [`plan/extraction.md`](docs/plan/extraction.md) | README §4 |
-| PUI 생성 원칙 · 배치(스캐폴딩) · 시맨틱 · 코드 규칙 | `.claude/rules/pui-code-convention.md` | `SKILL.md` 경로 판별, README §4 |
+| PUI 생성 원칙 · 배치(스캐폴딩) · 시맨틱 · 코드 규칙 | **PUI 코드 컨벤션** | `SKILL.md` 경로 판별, README §4 |
 | 원칙 판정 운영 · 필수 파일 · 스토리 · changelog | [`build/pui-policy.md`](docs/build/pui-policy.md) | `SKILL.md` Phase 2 |
 | features/apps 경로 선택 · 형제 따라하기 | [`build/business-policy.md`](docs/build/business-policy.md) | README §4 |
 | codegen 기반 변환 · 토큰 매핑 · 치수/반응형 | [`build/guide/figma-to-css.md`](docs/build/guide/figma-to-css.md) | `pui-generation-guide.md`(라우팅) |

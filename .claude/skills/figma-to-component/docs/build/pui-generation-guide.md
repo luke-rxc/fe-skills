@@ -3,7 +3,7 @@
 > **기본 vs 부가 — 두 문서의 관계**
 > - **기본(baseline)**: `src/pui`를 생성하든 수정하든, `figma-to-component` 스킬을 쓰든 안 쓰든 **항상** 지켜야 할 규칙은 [`rules/pui-code-convention.md`](../../../../rules/pui-code-convention.md)다(세션에 자동 로드, 단일 기준). ForwardRef·Props 선언 순서·이벤트 핸들러 시그니처·styled 변수 선언·import/export·key 규칙 등. **여기서 중복하지 않는다.**
 > - **부가(additional)**: **아래 `guide/` 4종**이 그 기본 위에 **Figma 디자인 → 코드 생성 워크플로에서만** 추가로 필요한 내용을 담는다 — 코딩 골격·예시, Figma 값(색상/폰트/간격) → 토큰 매핑, 이미지·아이콘·액션 사용법, 조합 패턴, 실패 사례 등. 생성 흐름 밖(단순 수정 등)에서는 기본만으로 충분하다.
-> - 전사 일반 코드 컨벤션(alias·JSDoc·any 최소화 등) → `.kiro/steering/code-conventions.md` (중복 금지, 그쪽을 따른다)
+> - 전사 일반 코드 컨벤션(alias·JSDoc·any 최소화 등) → **프로젝트 코드 컨벤션**(프로젝트 저장소 `CLAUDE.md`/`AGENTS.md`) (중복 금지, 그쪽을 따른다)
 > - pui **정책**(이게 pui인가·어디 만드나·무엇이 필수인가·검증) → [pui-policy.md](pui-policy.md)
 
 ## 라우팅 — 지금 하는 일에 맞는 문서만 읽는다
@@ -22,7 +22,7 @@
 ## 어디에도 안 들어간 것
 
 - **생성 직전 체크 · 컨벤션 준수 검사** → [review.md](review.md) (Phase 2 리뷰에서 쓰는 체크리스트로 승격)
-- **PUI Convention 세부 규칙**(ForwardRef·Props 선언 순서·이벤트 핸들러 시그니처·styled 변수 선언·import/export·key) → `.claude/rules/pui-code-convention.md`가 단일 기준. `src/pui` 파일을 다루면 세션에 자동 로드되므로(paths 스코프 rule) 생성이든 스킬 없이 하는 수정이든 항상 적용된다.
+- **PUI Convention 세부 규칙**(ForwardRef·Props 선언 순서·이벤트 핸들러 시그니처·styled 변수 선언·import/export·key) → **PUI 코드 컨벤션**이 단일 기준. `src/pui` 파일을 다루면 세션에 자동 로드되므로(paths 스코프 rule) 생성이든 스킬 없이 하는 수정이든 항상 적용된다.
 
 ## 모든 문서에 공통인 것
 
