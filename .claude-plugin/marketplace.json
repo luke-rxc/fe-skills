@@ -1,0 +1,20 @@
+{
+  "name": "fe-skills",
+  "owner": { "name": "luke-rxc" },
+  "metadata": {
+    "description": "FE 팀 에이전트 스킬 모음",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "fe-mobile",
+      "description": "fe-mobile 프로젝트 전용 스킬 (Figma → 컴포넌트 생성 등)",
+      "version": "0.1.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./.claude/skills/figma-to-component"
+      ]
+    }
+  ]
+}
